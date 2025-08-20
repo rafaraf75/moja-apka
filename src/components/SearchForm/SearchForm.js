@@ -3,6 +3,7 @@ import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { updateSearchString } from '../../redux/store';
 
 const SearchForm = () => {
   const [value, setValue] = useState('');
@@ -10,8 +11,7 @@ const SearchForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // wysyłamy akcję do reducera z aktualną wartością inputa
-    dispatch({ type: 'UPDATE_SEARCHSTRING', payload: value });
+    dispatch(updateSearchString(value));
   };
 
   return (
