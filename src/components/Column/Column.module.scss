@@ -1,5 +1,5 @@
 @use "sass:math";
-@import '../../styles/settings.scss';
+@use '../../styles/settings.scss' as *;
 
 .column {
   flex-shrink: 0;

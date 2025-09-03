@@ -1,4 +1,4 @@
-@import '../../styles/settings.scss';
+@use '../../styles/settings.scss' as *;
 
 .card {
   position: relative;

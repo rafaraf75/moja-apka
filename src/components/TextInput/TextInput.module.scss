@@ -1,4 +1,4 @@
-@import '../../styles/settings.scss';
+@use '../../styles/settings.scss' as *;
 
 .input {
   min-width: 200px;
