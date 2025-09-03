@@ -1,0 +1,38 @@
+@use '../../styles/settings.scss' as *;
+
+.nav {
+  background: darken($color-dark, 3%);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  font-size: 24px;
+  color: $color-light;
+  text-decoration: none;
+
+  svg { display: block; }
+}
+
+.active { text-decoration: underline; }
+
+.menu {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  a {
+    color: $color-light;
+    text-decoration: none;
+    font-weight: 600;
+
+    &:hover { text-decoration: underline; }
+  }
+}
