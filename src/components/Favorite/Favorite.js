@@ -1,8 +1,8 @@
-import React from 'react';
+import PageTitle from '../PageTitle/PageTitle';
 
 const Favorite = () => (
   <section>
-    <h2>Favorite</h2>
+    <PageTitle>Favorite</PageTitle>
     <p>Tu będą polubione karty.</p>
   </section>
 );

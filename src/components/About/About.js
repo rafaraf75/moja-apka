@@ -1,8 +1,8 @@
-import React from 'react';
+import PageTitle from '../PageTitle/PageTitle';
 
 const About = () => (
   <section>
-    <h2>About</h2>
+    <PageTitle>About</PageTitle>
     <p>To prosta aplikacja To-do. Więcej opisów wkrótce.</p>
   </section>
 );
