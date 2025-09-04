@@ -20,8 +20,6 @@
   svg { display: block; }
 }
 
-.active { text-decoration: underline; }
-
 .menu {
   display: flex;
   gap: 24px;
@@ -33,7 +31,6 @@
     color: $color-light;
     text-decoration: none;
     font-weight: 600;
-
-    &:hover { text-decoration: underline; }
+    &.linkActive { color: $color-warning; }
   }
 }

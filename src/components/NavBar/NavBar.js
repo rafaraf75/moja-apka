@@ -14,17 +14,17 @@ const NavBar = () => (
 
         <ul className={styles.menu}>
           <li>
-            <NavLink to="/" end className={({isActive}) => isActive ? styles.active : undefined}>
+            <NavLink to="/" end className={({isActive}) => isActive ? styles.linkActive : undefined}>
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/favorite" className={({isActive}) => isActive ? styles.active : undefined}>
+            <NavLink to="/favorite" className={({isActive}) => isActive ? styles.linkActive : undefined}>
               Favorite
             </NavLink>
           </li>
           <li>
-            <NavLink to="/about" className={({isActive}) => isActive ? styles.active : undefined}>
+            <NavLink to="/about" className={({isActive}) => isActive ? styles.linkActive : undefined}>
               About
             </NavLink>
           </li>
