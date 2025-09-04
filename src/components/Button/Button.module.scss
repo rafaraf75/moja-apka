@@ -1,3 +1,4 @@
+@use "sass:color";
 @use '../../styles/settings.scss' as *;
 
 .button {
@@ -15,14 +16,14 @@
   transition: $transition;
 
   &:hover {
-    background: darken($color-success, 5%);
+    background: color.adjust($color-success, $lightness: -5%);
   }
 
   &.danger {
     background: $color-warning;
 
     &:hover {
-      background: darken($color-warning, 5%);
+      background: color.adjust($color-warning, $lightness: -5%);
     }
   }
 
@@ -30,7 +31,7 @@
     background: transparent;
 
     &:hover {
-      color: darken($color-light, 20%);
+      color: color.adjust($color-light, $lightness: -20%);
     }
   }
 }

@@ -1,7 +1,8 @@
+@use "sass:color";
 @use '../../styles/settings.scss' as *;
 
 .nav {
-  background: darken($color-dark, 3%);
+  background: color.adjust($color-dark, $lightness: -3%);
 }
 
 .inner {
