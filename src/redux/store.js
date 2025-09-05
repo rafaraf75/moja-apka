@@ -11,19 +11,28 @@ export const getFilteredCards = ({ cards, searchString }, columnId) =>
     card.columnId === columnId && strContains(card.title, searchString)
   );
 
+export const getListById = ({ lists }, listId) =>
+ lists.find(list => String(list.id) === String(listId));
+
+export const getColumnsByList = ({ columns }, listId) =>
+  columns.filter(col => String(col.listId) === String(listId));
+
+export const getAllLists = state => state.lists;
+
 // ---------- ACTION CREATORS ----------
 export const addColumn = payload => ({ type: 'ADD_COLUMN', payload });
-export const addCard = payload => ({ type: 'ADD_CARD', payload }); // { title, columnId }
+export const addCard = payload => ({ type: 'ADD_CARD', payload });
 export const updateSearchString = payload => ({ type: 'UPDATE_SEARCHSTRING', payload });
+export const addList = payload => ({ type: 'ADD_LIST', payload });
 
 // ---------- REDUCER ----------
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_COLUMN': {
-      const { title, icon } = action.payload;
+      const { title, icon, listId } = action.payload;
       return {
         ...state,
-        columns: [...state.columns, { id: shortid(), title, icon }],
+        columns: [...state.columns, { id: shortid(), title, icon, listId }],
       };
     }
 
@@ -32,6 +41,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cards: [...state.cards, { id: shortid(), title, columnId }],
+      };
+    }
+
+    case 'ADD_LIST': {
+      const { title, description } = action.payload;
+      return {
+        ...state,
+        lists: [...state.lists, { id: shortid(), title, description }],
       };
     }
 

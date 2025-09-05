@@ -1,7 +1,7 @@
 @use "sass:math";
 @use '../../styles/settings.scss' as *;
 
-.columnForm {
+.listForm {
   max-width: 960px;
   margin: $base-size auto 0;
 }
@@ -10,22 +10,21 @@
   display: flex;
   justify-content: center;
   gap: $base-size;
-  align-items: center;
+  align-items: flex-end;
   flex-wrap: wrap;
 }
 
-.columnForm .field {
+.field {
   display: flex;
   align-items: center;
   gap: math.div($base-size, 2);
-  flex: 0 0 260px;
+  flex: 0 0 300px;
 }
 
 .label {
   display: inline-block;
   white-space: nowrap;
-  min-width: 56px;
-  align-items: center;
+  min-width: 90px;
   text-align: right;
 }
 
