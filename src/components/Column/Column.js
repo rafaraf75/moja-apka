@@ -2,10 +2,12 @@ import styles from './Column.module.scss';
 import Card from './../Card/Card';
 import CardForm from './../CardForm/CardForm';
 import { useSelector } from 'react-redux';
-import { getFilteredCards } from '../../redux/store';
+import { useMemo } from 'react';
+import { makeGetFilteredCards } from '../../redux/store';
 
 const Column = (props) => {
-  const cards = useSelector(state => getFilteredCards(state, props.id));
+  const selectCards = useMemo(() => makeGetFilteredCards(props.id), [props.id]);
+  const cards = useSelector(selectCards);
 
   return (
     <article className={styles.column}>
@@ -14,7 +16,14 @@ const Column = (props) => {
         {props.title}
       </h2>
       <ul className={styles.cards}>
-        {cards.map(card => <Card key={card.id} title={card.title} />)}
+        {cards.map(card => (
+          <Card
+            key={card.id}
+            id={card.id}
+            title={card.title}
+            isFavorite={card.isFavorite}
+          />
+        ))}
       </ul>
       <CardForm columnId={props.id} />
     </article>

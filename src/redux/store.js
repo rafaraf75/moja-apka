@@ -1,64 +1,25 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import initialState from './initialState';
-import shortid from 'shortid';
-import strContains from '../utils/strContains';
 
-// ---------- SELECTORS ----------
-export const getAllColumns = state => state.columns;
+// subreducery z osobnych plików
+import listsReducer from './listsRedux';
+import columnsReducer from './columnsRedux';
+import cardsReducer from './cardsRedux';
+import searchStringReducer from './searchStringRedux';
 
-export const getFilteredCards = ({ cards, searchString }, columnId) =>
-  cards.filter(card =>
-    card.columnId === columnId && strContains(card.title, searchString)
-  );
+// re-eksporty (żeby nie zmieniać importów w komponentach)
+export { addList, getListById, getAllLists } from './listsRedux';
+export { addColumn, getAllColumns, getColumnsByList } from './columnsRedux';
+export { addCard, toggleCardFavorite, removeCard, makeGetFilteredCards, getFavoriteCards } from './cardsRedux';
+export { updateSearchString } from './searchStringRedux';
 
-export const getListById = ({ lists }, listId) =>
- lists.find(list => String(list.id) === String(listId));
-
-export const getColumnsByList = ({ columns }, listId) =>
-  columns.filter(col => String(col.listId) === String(listId));
-
-export const getAllLists = state => state.lists;
-
-// ---------- ACTION CREATORS ----------
-export const addColumn = payload => ({ type: 'ADD_COLUMN', payload });
-export const addCard = payload => ({ type: 'ADD_CARD', payload });
-export const updateSearchString = payload => ({ type: 'UPDATE_SEARCHSTRING', payload });
-export const addList = payload => ({ type: 'ADD_LIST', payload });
-
-// ---------- REDUCER ----------
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'ADD_COLUMN': {
-      const { title, icon, listId } = action.payload;
-      return {
-        ...state,
-        columns: [...state.columns, { id: shortid(), title, icon, listId }],
-      };
-    }
-
-    case 'ADD_CARD': {
-      const { title, columnId } = action.payload;
-      return {
-        ...state,
-        cards: [...state.cards, { id: shortid(), title, columnId }],
-      };
-    }
-
-    case 'ADD_LIST': {
-      const { title, description } = action.payload;
-      return {
-        ...state,
-        lists: [...state.lists, { id: shortid(), title, description }],
-      };
-    }
-
-    case 'UPDATE_SEARCHSTRING':
-      return { ...state, searchString: action.payload };
-
-    default:
-      return state;
-  }
-};
+// --- root reducer ---
+const reducer = combineReducers({
+  lists: listsReducer,
+  columns: columnsReducer,
+  cards: cardsReducer,
+  searchString: searchStringReducer,
+});
 
 const store = createStore(
   reducer,
